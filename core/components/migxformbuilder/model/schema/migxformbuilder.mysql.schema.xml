@@ -1,0 +1,36 @@
+<?xml version = "1.0" encoding = "UTF-8"?>
+<model package="migxformbuilder" baseClass="xPDOObject" platform="mysql" defaultEngine="MyISAM" version="1.1">
+    
+    <object class="mfbForm" table="migxformbuilder_forms" extends="xPDOSimpleObject">
+        <field key="name" dbtype="varchar" precision="255" phptype="string" null="false" default="" />
+        <field key="json" dbtype="text" phptype="string" null="false" default="" />
+        <field key="sendmail" dbtype="tinyint" precision="1" attributes="unsigned" phptype="integer" null="false" default="0" />
+        <field key="todb" dbtype="tinyint" precision="1" attributes="unsigned" phptype="integer" null="false" default="0" />
+        <field key="sendautoresponse" dbtype="tinyint" precision="1" attributes="unsigned" phptype="integer" null="false" default="0" />
+        
+        <field key="fiarText" dbtype="text" phptype="string" null="false" default="" />
+        <field key="extended" dbtype="text" phptype="json" null="false" default="" />
+        
+        <aggregate alias="FormRequests" class="mfbFormRequest" local="id" foreign="form_id" cardinality="many" owner="local" />  
+    </object>  
+    
+	<object class="mfbFormRequest" table="migxformbuilder_formrequests" extends="xPDOSimpleObject">
+		<field key="title" dbtype="varchar" precision="10" phptype="string" null="false" default="" />
+		<field key="firstname" dbtype="varchar" precision="100" phptype="string" null="false" default="" />
+		<field key="lastname" dbtype="varchar" precision="100" phptype="string" null="false" default="" />
+		<field key="email" dbtype="varchar" precision="100" phptype="string" null="false" default="" />
+		<field key="phone" dbtype="varchar" precision="50" phptype="string" null="false" default="" />
+		<field key="address" dbtype="text" phptype="string" null="false" default="" />
+		<field key="zip" dbtype="varchar" precision="10" phptype="string" null="false" default="" />
+		<field key="message" dbtype="text" phptype="string" null="false" default="" />
+        <field key="form_id" dbtype="int" precision="10" phptype="integer" null="false" default="0"  index="index" />
+        <field key="extended" dbtype="text" phptype="json" null="false" default="" />
+        
+        <field key="createdon" dbtype="datetime" phptype="datetime" null="false" />
+        <field key="deleted" dbtype="tinyint" precision="1" attributes="unsigned" phptype="integer" null="false" default="0" />
+        <field key="published" dbtype="tinyint" precision="1" attributes="unsigned" phptype="integer" null="false" default="0" />
+
+        <aggregate alias="Form" class="mfbForm" local="form_id" foreign="id" cardinality="one" owner="foreign" /> 
+	</object>                    
+    
+</model>

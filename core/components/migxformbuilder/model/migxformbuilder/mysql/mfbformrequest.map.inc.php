@@ -13,6 +13,7 @@ $xpdo_meta_map['mfbFormRequest']= array (
     'phone' => '',
     'address' => '',
     'zip' => '',
+    'city' => '',
     'message' => '',
     'form_id' => 0,
     'extended' => '',
@@ -73,6 +74,14 @@ $xpdo_meta_map['mfbFormRequest']= array (
     array (
       'dbtype' => 'varchar',
       'precision' => '10',
+      'phptype' => 'string',
+      'null' => false,
+      'default' => '',
+    ),
+    'city' => 
+    array (
+      'dbtype' => 'varchar',
+      'precision' => '255',
       'phptype' => 'string',
       'null' => false,
       'default' => '',

@@ -32,6 +32,8 @@ if ($object = $modx->getObject('mfbForm', $formid)) {
         $validate = array();
         $validate[] = 'homephone:blank';
         foreach ($fields as $field) {
+            $field['name'] = $field['name'] == 'Extended Field' ? 'extended_' . $field['extendedname'] : $field['name'];
+            $field['name'] = str_replace(' ','_',$field['name']);            
             if (!empty($field['validate'])) {
                 if (is_array($field['validate'])) {
                     $field['validate'] = implode(':', $field['validate']);
@@ -51,6 +53,7 @@ if ($object = $modx->getObject('mfbForm', $formid)) {
     $sendmail = $object->get('sendmail');
     $todb = $object->get('todb');
     $sendautoresponse = $object->get('sendautoresponse');
+    $redirectTo = $modx->getOption('redirectTo', $extended, '');
 
     if (!empty($todb)) {
         $params['packagename'] = 'migxformbuilder';
@@ -84,8 +87,10 @@ if ($object = $modx->getObject('mfbForm', $formid)) {
 
     }    
 
-
-
+    if (!empty($redirectTo)){
+        $params['redirectTo'] = $redirectTo;
+        $hooks[] = 'redirect';    
+    }
 
     $params['hooks'] = implode(',', $hooks);
 
@@ -95,6 +100,8 @@ if ($object = $modx->getObject('mfbForm', $formid)) {
         $fields = $modx->fromJson($fieldset['fields']);
         foreach ($fields as $field) {
             $field['tpl'] = 'input_' . $field['type'];
+            $field['name'] = $field['name'] == 'Extended Field' ? 'extended_' . $field['extendedname'] : $field['name'];
+            $field['name'] = str_replace(' ','_',$field['name']);
             $opts = array();
             $options = $modx->fromJson($field['inputoptions']);
             if (is_array($options)) {

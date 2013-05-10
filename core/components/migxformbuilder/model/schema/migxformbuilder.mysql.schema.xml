@@ -22,6 +22,7 @@
 		<field key="phone" dbtype="varchar" precision="50" phptype="string" null="false" default="" />
 		<field key="address" dbtype="text" phptype="string" null="false" default="" />
 		<field key="zip" dbtype="varchar" precision="10" phptype="string" null="false" default="" />
+        <field key="city" dbtype="varchar" precision="255" phptype="string" null="false" default="" />
 		<field key="message" dbtype="text" phptype="string" null="false" default="" />
         <field key="form_id" dbtype="int" precision="10" phptype="integer" null="false" default="0"  index="index" />
         <field key="extended" dbtype="text" phptype="json" null="false" default="" />

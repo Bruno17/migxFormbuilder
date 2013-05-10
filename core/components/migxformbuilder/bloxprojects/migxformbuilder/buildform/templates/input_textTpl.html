@@ -1,4 +1,6 @@
 <label for="[[+name]]">[[+label]]</label>
 <input id="[[+name]]" type="text" name="[[+name]]" value="[[!+fi.[[+name]]]]" />
-<span class="error">[[!+fi.error.[[+name]]]]</span>
+[[!+fi.error.[[+name]]:notempty=`
+<span class="error">[[!+fi.error.[[+name]]]]</span><br />
+`]]
 <br /><br />

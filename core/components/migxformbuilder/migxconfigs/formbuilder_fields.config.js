@@ -22,10 +22,24 @@
           "default":"text"
         },
         {
-          "MIGX_id":1,
+          "MIGX_id":6,
           "field":"name",
-          "caption":"Name",
-          "description":"",
+          "caption":"Field Name",
+          "description":"Select one or use a extended field",
+          "description_is_code":"0",
+          "inputTV":"",
+          "inputTVtype":"listbox",
+          "configs":"",
+          "sourceFrom":"config",
+          "sources":"[]",
+          "inputOptionValues":"Extended Field||email||firstname||lastname||phone||address||zip||city||message",
+          "default":""
+        },
+        {
+          "MIGX_id":1,
+          "field":"extendedname",
+          "caption":"Extended Name",
+          "description":"this is required for Extended Fields!",
           "description_is_code":"0",
           "inputTV":"",
           "inputTVtype":"",
@@ -115,6 +129,7 @@
     "formcaption":"Field",
     "update_win_title":"Formbuilder Field",
     "win_id":"formbuilder_fields",
+    "maxRecords":"",
     "multiple_formtabs":"",
     "extrahandlers":"",
     "packageName":"migxformbuilder",
@@ -139,12 +154,15 @@
   "columns":[
     {
       "MIGX_id":1,
-      "header":"Korte naam",
+      "header":"Name",
       "dataIndex":"name",
       "width":20,
-      "renderer":"",
       "sortable":"false",
-      "show_in_grid":1
+      "show_in_grid":1,
+      "renderer":"",
+      "clickaction":"",
+      "selectorconfig":"",
+      "renderoptions":"[]"
     },
     {
       "MIGX_id":3,
@@ -163,12 +181,24 @@
       "renderer":"",
       "sortable":"false",
       "show_in_grid":1
+    },
+    {
+      "MIGX_id":4,
+      "header":"Extended Name",
+      "dataIndex":"extendedname",
+      "width":30,
+      "sortable":"false",
+      "show_in_grid":1,
+      "renderer":"",
+      "clickaction":"",
+      "selectorconfig":"",
+      "renderoptions":"[]"
     }
   ],
   "createdby":2,
   "createdon":"2012-09-16 22:43:33",
   "editedby":1,
-  "editedon":"2013-05-06 07:54:41",
+  "editedon":"2013-05-10 08:25:32",
   "deleted":0,
   "deletedon":"-1-11-30 00:00:00",
   "deletedby":0,

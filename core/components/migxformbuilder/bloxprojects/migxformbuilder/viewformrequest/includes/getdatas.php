@@ -26,6 +26,8 @@ if ($object = $modx->getObject('mfbForm', $formid)) {
         $fields = $modx->fromJson($fieldset['fields']);
         foreach ($fields as $field) {
             $field['tpl'] = 'input_' . $field['type'];
+            $field['name'] = $field['name'] == 'Extended Field' ? 'extended_' . $field['extendedname'] : $field['name'];
+            $field['name'] = str_replace(' ','_',$field['name']);            
             $field['value'] = $request[$field['name']];
             $opts = array();
             $options = $modx->fromJson($field['inputoptions']);

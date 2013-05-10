@@ -34,6 +34,20 @@
           "sources":"[]",
           "inputOptionValues":"yes==1",
           "default":""
+        },
+        {
+          "MIGX_id":6,
+          "field":"extended.redirectTo",
+          "caption":"Thank You page",
+          "description":"",
+          "description_is_code":"0",
+          "inputTV":"",
+          "inputTVtype":"listbox",
+          "configs":"",
+          "sourceFrom":"config",
+          "sources":"[]",
+          "inputOptionValues":"@CHUNK migxFormThankyouselector",
+          "default":""
         }
       ]
     },
@@ -208,6 +222,7 @@
     "formcaption":"",
     "update_win_title":"Formbuilder Form",
     "win_id":"formbuilder",
+    "maxRecords":"",
     "multiple_formtabs":"",
     "extrahandlers":"",
     "packageName":"migxformbuilder",
@@ -255,7 +270,7 @@
   "createdby":2,
   "createdon":"2012-09-16 22:15:26",
   "editedby":1,
-  "editedon":"2013-05-07 12:39:36",
+  "editedon":"2013-05-10 09:18:08",
   "deleted":0,
   "deletedon":"-1-11-30 00:00:00",
   "deletedby":0,

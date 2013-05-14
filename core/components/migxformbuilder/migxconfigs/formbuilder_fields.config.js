@@ -18,7 +18,7 @@
           "configs":"",
           "sourceFrom":"config",
           "sources":"[]",
-          "inputOptionValues":"radio==radio||checkbox==checkbox||text==text||textarea==textarea||information==information",
+          "inputOptionValues":"radio==radio||checkbox==checkbox||text==text||textarea==textarea||information==information||hidden==hidden",
           "default":"text"
         },
         {
@@ -118,6 +118,27 @@
           "default":""
         }
       ]
+    },
+    {
+      "MIGX_id":4,
+      "caption":"Value",
+      "print_before_tabs":"0",
+      "fields":[
+        {
+          "MIGX_id":1,
+          "field":"getvaluefromrequest",
+          "caption":"Get Value from Request",
+          "description":"Get the value from request. The fieldname has to be the same as the request-param.",
+          "description_is_code":"0",
+          "inputTV":"",
+          "inputTVtype":"checkbox",
+          "configs":"",
+          "sourceFrom":"config",
+          "sources":"[]",
+          "inputOptionValues":"yes==1",
+          "default":""
+        }
+      ]
     }
   ],
   "contextmenus":"",
@@ -198,7 +219,7 @@
   "createdby":2,
   "createdon":"2012-09-16 22:43:33",
   "editedby":1,
-  "editedon":"2013-05-10 08:25:32",
+  "editedon":"2013-05-14 14:05:37",
   "deleted":0,
   "deletedon":"-1-11-30 00:00:00",
   "deletedby":0,

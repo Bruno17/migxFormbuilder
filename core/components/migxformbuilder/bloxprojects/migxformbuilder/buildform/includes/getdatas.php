@@ -26,6 +26,7 @@ if ($object = $modx->getObject('mfbForm', $formid)) {
     $fieldsets = $modx->fromJson($object->get('json'));
     $validate = '';
     $hooks = array();
+    $placeholderPrefix = 'fi.'; 
 
     foreach ($fieldsets as $fieldset) {
         $fields = $modx->fromJson($fieldset['fields']);
@@ -102,6 +103,19 @@ if ($object = $modx->getObject('mfbForm', $formid)) {
             $field['tpl'] = 'input_' . $field['type'];
             $field['name'] = $field['name'] == 'Extended Field' ? 'extended_' . $field['extendedname'] : $field['name'];
             $field['name'] = str_replace(' ','_',$field['name']);
+            $value = '';
+            if (isset($field['getvaluefromrequest']) && !empty($field['getvaluefromrequest'])){
+                if (isset($_REQUEST[$field['name']])){
+                    $value = rawurlencode($_REQUEST[$field['name']]);
+                }elseif(isset($_REQUEST[$field['extendedname']])){
+                    $value = rawurlencode($_REQUEST[$field['extendedname']]);
+                } 
+                if (!empty($value)){
+                    $modx->setPlaceholder($placeholderPrefix.$field['name'],$value);
+                }
+                
+            }
+            
             $opts = array();
             $options = $modx->fromJson($field['inputoptions']);
             if (is_array($options)) {

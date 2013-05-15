@@ -32,6 +32,20 @@
           "sources":"",
           "inputOptionValues":"",
           "default":""
+        },
+        {
+          "MIGX_id":3,
+          "field":"hidden",
+          "caption":"Hidden",
+          "description":"hide this fieldset",
+          "description_is_code":"0",
+          "inputTV":"",
+          "inputTVtype":"checkbox",
+          "configs":"",
+          "sourceFrom":"config",
+          "sources":"[]",
+          "inputOptionValues":"yes==1",
+          "default":""
         }
       ]
     },
@@ -66,6 +80,7 @@
     "formcaption":"Fieldset",
     "update_win_title":"Formbuilder Fieldset",
     "win_id":"formbuilder_fieldsets",
+    "maxRecords":"",
     "multiple_formtabs":"",
     "extrahandlers":"",
     "packageName":"migxformbuilder",
@@ -110,7 +125,7 @@
   "createdby":2,
   "createdon":"2012-09-16 22:35:54",
   "editedby":1,
-  "editedon":"2013-05-06 07:53:33",
+  "editedon":"2013-05-14 16:09:43",
   "deleted":0,
   "deletedon":"-1-11-30 00:00:00",
   "deletedby":0,

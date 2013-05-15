@@ -139,6 +139,69 @@
           "default":""
         }
       ]
+    },
+    {
+      "MIGX_id":5,
+      "caption":"Custom Chunks",
+      "print_before_tabs":"0",
+      "fields":[
+        {
+          "MIGX_id":1,
+          "field":"buildform_chunk",
+          "caption":"Form",
+          "description":"chunkname for Formfield",
+          "description_is_code":"0",
+          "inputTV":"",
+          "inputTVtype":"",
+          "configs":"",
+          "sourceFrom":"config",
+          "sources":"[]",
+          "inputOptionValues":"",
+          "default":""
+        },
+        {
+          "MIGX_id":2,
+          "field":"buildmailreport_chunk",
+          "caption":"Mail",
+          "description":"chunkname for Mailreport - field",
+          "description_is_code":"0",
+          "inputTV":"",
+          "inputTVtype":"",
+          "configs":"",
+          "sourceFrom":"config",
+          "sources":"[]",
+          "inputOptionValues":"",
+          "default":""
+        },
+        {
+          "MIGX_id":3,
+          "field":"viewformrequest_chunk",
+          "caption":"View",
+          "description":"chunkname for CMP - view - field",
+          "description_is_code":"0",
+          "inputTV":"",
+          "inputTVtype":"",
+          "configs":"",
+          "sourceFrom":"config",
+          "sources":"[]",
+          "inputOptionValues":"",
+          "default":""
+        },
+        {
+          "MIGX_id":4,
+          "field":"buildautorespondreport_chunk",
+          "caption":"Autorespond",
+          "description":"chunkname for autorespondmail - field",
+          "description_is_code":"0",
+          "inputTV":"",
+          "inputTVtype":"",
+          "configs":"",
+          "sourceFrom":"config",
+          "sources":"[]",
+          "inputOptionValues":"",
+          "default":""
+        }
+      ]
     }
   ],
   "contextmenus":"",
@@ -219,7 +282,7 @@
   "createdby":2,
   "createdon":"2012-09-16 22:43:33",
   "editedby":1,
-  "editedon":"2013-05-14 14:05:37",
+  "editedon":"2013-05-14 16:02:02",
   "deleted":0,
   "deletedon":"-1-11-30 00:00:00",
   "deletedby":0,

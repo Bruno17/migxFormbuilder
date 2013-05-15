@@ -1,6 +1,7 @@
 <?php
 
 $formid = $modx->getOption('form_id', $_REQUEST, '');
+$task = $modx->getOption('task', $this->bloxconfig, '');
 
 $modx->addPackage($this->bloxconfig['packagename'], $modx->getOption('core_path') . 'components/' . $this->bloxconfig['packagename'] . '/model/');
 
@@ -13,7 +14,12 @@ if ($object = $modx->getObject('mfbForm', $formid)) {
     foreach ($fieldsets as $fieldset) {
         $fields = $modx->fromJson($fieldset['fields']);
         foreach ($fields as $field) {
-            $field['tpl'] = 'input_' . $field['type'];
+            if (isset($field[$task.'_chunk']) && !empty($field[$task.'_chunk'])){
+                $field['tpl'] = $field[$task.'_chunk'];                    
+            }
+            else{
+                $field['tpl'] = 'input_' . $field['type'];
+            }            
             $field['name'] = $field['name'] == 'Extended Field' ? 'extended_' . $field['extendedname'] : $field['name'];
             $field['name'] = str_replace(' ','_',$field['name']);            
             $field['value'] = $_REQUEST[$field['name']];

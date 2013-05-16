@@ -81,7 +81,8 @@ foreach ($formFields as $field => $value) {
         
         $parts = explode('_',$field);
         if ($parts[0] == 'extended' && isset($parts[1])){
-            $extended[$parts[1]] = $value;
+            unset($parts[0]);
+            $extended[implode('_',$parts)] = $value;
         }
         
 		$dataobject->set($field, $value);

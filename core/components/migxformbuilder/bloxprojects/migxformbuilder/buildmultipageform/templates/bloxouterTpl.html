@@ -1,0 +1,22 @@
+
+[[!+fi.error_message:notempty=`<p>[[!+fi.error_message]]</p>`]]
+
+<form method="post" action="[[~[[*id]]]]">
+
+<input type="hidden" name="homephone" value="" />
+<input type="hidden" name="form_id" value="[[+id]]" />
+
+[[+innerrows.fieldset]]
+
+<br /><br />
+
+[[+_first:is=`1`:then=``:else=`
+<input type="submit" name="back" value="[[%back]]" />
+`]]
+[[+_last:is=`1`:then=`
+<input type="submit" name="submit" />
+`:else=`
+<input type="submit" name="next" value="[[%next]]" />
+`]]
+
+</form>

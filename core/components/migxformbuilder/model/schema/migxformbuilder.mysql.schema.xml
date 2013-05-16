@@ -25,6 +25,7 @@
         <field key="city" dbtype="varchar" precision="255" phptype="string" null="false" default="" />
 		<field key="message" dbtype="text" phptype="string" null="false" default="" />
         <field key="form_id" dbtype="int" precision="10" phptype="integer" null="false" default="0"  index="index" />
+        <field key="form_ids" dbtype="varchar" precision="100" phptype="string" null="false" default="" />
         <field key="extended" dbtype="text" phptype="json" null="false" default="" />
         
         <field key="createdon" dbtype="datetime" phptype="datetime" null="false" />

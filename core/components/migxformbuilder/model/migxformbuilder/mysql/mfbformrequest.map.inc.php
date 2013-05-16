@@ -16,6 +16,7 @@ $xpdo_meta_map['mfbFormRequest']= array (
     'city' => '',
     'message' => '',
     'form_id' => 0,
+    'form_ids' => '',
     'extended' => '',
     'createdon' => NULL,
     'deleted' => 0,
@@ -101,6 +102,14 @@ $xpdo_meta_map['mfbFormRequest']= array (
       'null' => false,
       'default' => 0,
       'index' => 'index',
+    ),
+    'form_ids' => 
+    array (
+      'dbtype' => 'varchar',
+      'precision' => '100',
+      'phptype' => 'string',
+      'null' => false,
+      'default' => '',
     ),
     'extended' => 
     array (

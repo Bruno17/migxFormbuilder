@@ -28,7 +28,7 @@ if ($object = $modx->getObject('mfbForm', $formid)) {
     $fieldsets = $modx->fromJson($object->get('json'));
     $validate = '';
     $hooks = array();
-    $placeholderPrefix = 'fi.'; 
+    $placeholderPrefix = 'fi.';
 
     foreach ($fieldsets as $fieldset) {
         $fields = $modx->fromJson($fieldset['fields']);
@@ -36,8 +36,10 @@ if ($object = $modx->getObject('mfbForm', $formid)) {
         $validate[] = 'homephone:blank';
         foreach ($fields as $field) {
             $field['name'] = $field['name'] == 'Extended Field' ? 'extended_' . $field['extendedname'] : $field['name'];
-            $field['name'] = str_replace(' ','_',$field['name']);            
-            if (!empty($field['validate'])) {
+            $field['name'] = str_replace(' ', '_', $field['name']);
+            if (isset($field['custom_validate']) && !empty($field['custom_validate'])) {
+                $validate[] = $field['name'] . ':' . $field['custom_validate'];
+            } elseif (!empty($field['validate'])) {
                 if (is_array($field['validate'])) {
                     $field['validate'] = implode(':', $field['validate']);
                 }
@@ -70,43 +72,43 @@ if ($object = $modx->getObject('mfbForm', $formid)) {
         $params['emailTpl'] = 'migxFormReportTpl';
         $hooks[] = 'email';
     }
-    
+
     if (!empty($sendautoresponse)) {
         $params['replyTo'] = $modx->getOption('replyTo', $extended, '');
         $fiarFrom = $modx->getOption('fiarFrom', $extended, '');
-        if (!empty($fiarFrom)){
-            $params['fiarFrom'] = $fiarFrom;     
+        if (!empty($fiarFrom)) {
+            $params['fiarFrom'] = $fiarFrom;
         }
         $fiarFromName = $modx->getOption('fiarFromName', $extended, '');
-        if (!empty($fiarFromName)){
-            $params['fiarFromName'] = $fiarFromName;     
-        }        
+        if (!empty($fiarFromName)) {
+            $params['fiarFromName'] = $fiarFromName;
+        }
         $fiarSubject = $modx->getOption('fiarSubject', $extended, '');
-        if (!empty($fiarSubject)){
-            $params['fiarSubject'] = $fiarSubject;     
-        }        
+        if (!empty($fiarSubject)) {
+            $params['fiarSubject'] = $fiarSubject;
+        }
         $hooks[] = 'FormItAutoResponder';
         $params['fiarTpl'] = 'migxFormAutoRespondTpl';
 
-    }    
+    }
 
-    if (!empty($redirectTo)){
+    if (!empty($redirectTo)) {
         $params['redirectTo'] = $redirectTo;
-        $hooks[] = 'redirect';    
+        $hooks[] = 'redirect';
     }
 
     $params['hooks'] = implode(',', $hooks);
-    
-    foreach ($this->bloxconfig as $cfg=>$cfg_value){
+
+    foreach ($this->bloxconfig as $cfg => $cfg_value) {
         //overwrite formit-properties with scriptproperties,  starting with 'formit_'
-        if (substr($cfg,0,7) == 'formit_'){
-            $params[substr($cfg,7)] = $cfg_value;        
+        if (substr($cfg, 0, 7) == 'formit_') {
+            $params[substr($cfg, 7)] = $cfg_value;
         }
     }
-    
-    if (!empty($debug_formit)){
+
+    if (!empty($debug_formit)) {
         echo '<h3>Formit Properties</h3>';
-        echo '<pre>'.print_r($params,1).'</pre>';    
+        echo '<pre>' . print_r($params, 1) . '</pre>';
     }
 
     $modx->runSnippet('FormIt', $params);
@@ -114,36 +116,34 @@ if ($object = $modx->getObject('mfbForm', $formid)) {
     foreach ($fieldsets as $fieldset) {
         $fields = $modx->fromJson($fieldset['fields']);
         foreach ($fields as $field) {
-            if (isset($field[$task.'_chunk']) && !empty($field[$task.'_chunk'])){
-                $field['tpl'] = $field[$task.'_chunk'];                    
-            }
-            else{
+            if (isset($field[$task . '_chunk']) && !empty($field[$task . '_chunk'])) {
+                $field['tpl'] = $field[$task . '_chunk'];
+            } else {
                 $field['tpl'] = 'input_' . $field['type'];
-            }            
+            }
             $field['name'] = $field['name'] == 'Extended Field' ? 'extended_' . $field['extendedname'] : $field['name'];
-            $field['name'] = str_replace(' ','_',$field['name']);
+            $field['name'] = str_replace(' ', '_', $field['name']);
             $field['required'] = '0';
             if (!empty($field['validate'])) {
                 if (is_array($field['validate'])) {
-                    $field['required'] = in_array('required',$field['validate']) ? '1' : '0';
-                }
-                else{
+                    $field['required'] = in_array('required', $field['validate']) ? '1' : '0';
+                } else {
                     $field['required'] = $field['validate'] == 'required' ? '1' : '0';
                 }
-            }                
-            $value = '';
-            if (isset($field['getvaluefromrequest']) && !empty($field['getvaluefromrequest'])){
-                if (isset($_REQUEST[$field['name']])){
-                    $value = rawurlencode($_REQUEST[$field['name']]);
-                }elseif(isset($_REQUEST[$field['extendedname']])){
-                    $value = rawurlencode($_REQUEST[$field['extendedname']]);
-                } 
-                if (!empty($value)){
-                    $modx->setPlaceholder($placeholderPrefix.$field['name'],$value);
-                }
-                
             }
-            
+            $value = '';
+            if (isset($field['getvaluefromrequest']) && !empty($field['getvaluefromrequest'])) {
+                if (isset($_REQUEST[$field['name']])) {
+                    $value = rawurlencode($_REQUEST[$field['name']]);
+                } elseif (isset($_REQUEST[$field['extendedname']])) {
+                    $value = rawurlencode($_REQUEST[$field['extendedname']]);
+                }
+                if (!empty($value)) {
+                    $modx->setPlaceholder($placeholderPrefix . $field['name'], $value);
+                }
+
+            }
+
             $opts = array();
             $options = $modx->fromJson($field['inputoptions']);
             if (is_array($options)) {
@@ -151,7 +151,7 @@ if ($object = $modx->getObject('mfbForm', $formid)) {
                     $option['name'] = $field['name'];
                     $option['label'] = !empty($option['label']) ? $option['label'] : $option['value'];
                     $opts[] = $option;
-                }                
+                }
             } else {
                 $options = explode('||', $field['inputoptions']);
                 foreach ($options as $option) {

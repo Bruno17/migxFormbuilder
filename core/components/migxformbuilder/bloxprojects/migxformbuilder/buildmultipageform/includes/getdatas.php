@@ -51,7 +51,9 @@ if ($object = $modx->getObject('mfbForm', $lastform_id)) {
 
             $_SESSION[$sessionVarKey][$field['name']] = $_POST[$field['name']];
 
-            if (!empty($field['validate'])) {
+            if (isset($field['custom_validate']) && !empty($field['custom_validate'])) {
+                $validate[] = $field['name'] . ':' . $field['custom_validate'];
+            } elseif (!empty($field['validate'])) {
                 if (is_array($field['validate'])) {
                     $field['validate'] = implode(':', $field['validate']);
                 }
@@ -121,14 +123,14 @@ if ($object = $modx->getObject('mfbForm', $lastform_id)) {
 
     $params['hooks'] = implode(',', $hooks);
 
-    if (!isset($_REQUEST['submit'])){
+    if (!isset($_REQUEST['submit'])) {
         $params['clearFieldsOnSuccess'] = 0;
     }
 
-    if (!empty($debug_formit)){
+    if (!empty($debug_formit)) {
         echo '<h3>Formit Properties</h3>';
-        echo '<pre>'.print_r($params,1).'</pre>';    
-    }    
+        echo '<pre>' . print_r($params, 1) . '</pre>';
+    }
 
     $modx->runSnippet('FormIt', $params);
 
@@ -176,9 +178,9 @@ $modx->setPlaceholder($placeholderPrefix . $field, $value);
 
 if ($object = $modx->getObject('mfbForm', $formid)) {
     $bloxdatas = $object->toArray();
-    $bloxdatas['_formidx'] = $form_index+1;
+    $bloxdatas['_formidx'] = $form_index + 1;
     $bloxdatas['_first'] = $form_index == 0 ? '1' : '0';
-    $bloxdatas['_last'] = $form_index+1 == count($formids) ? '1' : '0';
+    $bloxdatas['_last'] = $form_index + 1 == count($formids) ? '1' : '0';
     $bloxdatas['form_ids'] = $formids;
     $bloxdatas['_pages'] = count($formids);
 
@@ -200,13 +202,12 @@ if ($object = $modx->getObject('mfbForm', $formid)) {
             $field['required'] = '0';
             if (!empty($field['validate'])) {
                 if (is_array($field['validate'])) {
-                    $field['required'] = in_array('required',$field['validate']) ? '1' : '0';
-                }
-                else{
+                    $field['required'] = in_array('required', $field['validate']) ? '1' : '0';
+                } else {
                     $field['required'] = $field['validate'] == 'required' ? '1' : '0';
                 }
-            }            
-            
+            }
+
             $value = '';
             if (isset($field['getvaluefromrequest']) && !empty($field['getvaluefromrequest'])) {
                 if (isset($_REQUEST[$field['name']])) {

@@ -74,6 +74,20 @@
           "sources":"[]",
           "inputOptionValues":"",
           "default":""
+        },
+        {
+          "MIGX_id":7,
+          "field":"class",
+          "caption":"CSS class",
+          "description":"css class for this field",
+          "description_is_code":"0",
+          "inputTV":"",
+          "inputTVtype":"",
+          "configs":"",
+          "sourceFrom":"config",
+          "sources":"[]",
+          "inputOptionValues":"",
+          "default":""
         }
       ]
     },
@@ -93,7 +107,21 @@
           "configs":"",
           "sourceFrom":"config",
           "sources":"[]",
-          "inputOptionValues":"required||email",
+          "inputOptionValues":"required||blank||email||allowTags||isNumber||isDate",
+          "default":""
+        },
+        {
+          "MIGX_id":7,
+          "field":"custom_validate",
+          "caption":"Custom Validate",
+          "description":"Alternatively to the checkboxes, you can put all formit-validation-rules for that field here, see http:\/\/rtfm.modx.com\/display\/ADDON\/FormIt.Validators",
+          "description_is_code":"0",
+          "inputTV":"",
+          "inputTVtype":"",
+          "configs":"",
+          "sourceFrom":"config",
+          "sources":"[]",
+          "inputOptionValues":"",
           "default":""
         }
       ]
@@ -282,7 +310,7 @@
   "createdby":2,
   "createdon":"2012-09-16 22:43:33",
   "editedby":1,
-  "editedon":"2013-05-14 16:02:02",
+  "editedon":"2013-05-16 13:04:41",
   "deleted":0,
   "deletedon":"-1-11-30 00:00:00",
   "deletedby":0,

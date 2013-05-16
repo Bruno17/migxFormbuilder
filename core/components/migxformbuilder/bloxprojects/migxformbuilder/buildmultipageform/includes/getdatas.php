@@ -3,8 +3,9 @@
 $modx->addPackage($this->bloxconfig['packagename'], $modx->getOption('core_path') . 'components/' . $this->bloxconfig['packagename'] . '/model/');
 
 $formids = $modx->getOption('form_ids', $this->bloxconfig, '');
-$task = $modx->getOption('task', $this->bloxconfig, '');
+//$task = $modx->getOption('task', $this->bloxconfig, '');
 $task = 'buildform';
+$debug_formit = $modx->getOption('debug_formit', $this->bloxconfig, '');
 $direction = isset($_REQUEST['next']) ? 'next' : '';
 $direction = empty($direction) && isset($_REQUEST['back']) ? 'back' : $direction;
 
@@ -123,7 +124,11 @@ if ($object = $modx->getObject('mfbForm', $lastform_id)) {
     if (!isset($_REQUEST['submit'])){
         $params['clearFieldsOnSuccess'] = 0;
     }
-    
+
+    if (!empty($debug_formit)){
+        echo '<h3>Formit Properties</h3>';
+        echo '<pre>'.print_r($params,1).'</pre>';    
+    }    
 
     $modx->runSnippet('FormIt', $params);
 
@@ -149,9 +154,10 @@ if (empty($validated)) {
 }
 
 
-if (empty($direction)) {
+if ((empty($direction) && $validated) || (empty($direction) && !isset($_REQUEST['submit']))) {
     unset($_SESSION[$sessionVarKey]);
 }
+
 
 /*
 if (is_array($_SESSION['request'])){
@@ -165,7 +171,7 @@ $modx->setPlaceholder($placeholderPrefix . $field, $value);
 }
 */
 
-print_r($_SESSION[$sessionVarKey]);
+//print_r($_SESSION[$sessionVarKey]);
 
 
 if ($object = $modx->getObject('mfbForm', $formid)) {
@@ -191,6 +197,16 @@ if ($object = $modx->getObject('mfbForm', $formid)) {
             }
             $field['name'] = $field['name'] == 'Extended Field' ? 'extended_' . $field['extendedname'] : $field['name'];
             $field['name'] = str_replace(' ', '_', $field['name']);
+            $field['required'] = '0';
+            if (!empty($field['validate'])) {
+                if (is_array($field['validate'])) {
+                    $field['required'] = in_array('required',$field['validate']) ? '1' : '0';
+                }
+                else{
+                    $field['required'] = $field['validate'] == 'required' ? '1' : '0';
+                }
+            }            
+            
             $value = '';
             if (isset($field['getvaluefromrequest']) && !empty($field['getvaluefromrequest'])) {
                 if (isset($_REQUEST[$field['name']])) {

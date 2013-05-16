@@ -1,5 +1,4 @@
-<label for="[[+name]]">[[+label]]</label>
-<textarea id="[[+name]]" type="text" name="[[+name]]" >
-[[+fi.name]]
-</textarea>
-<br /><br />
+<div class="formfield formfield_[[+class]]">
+<label for="[[+name]]">[[+label]][[+required:is=`1`:then=`<abbr class="req" title="required">*</abbr>`:else=``]]</label>
+<textarea class="textarea [[+class]]" id="[[+name]]" name="[[+name]]" value="[[+fi.[[+name]]]]" >[[+fi.[[+name]]]]</textarea>
+</div>

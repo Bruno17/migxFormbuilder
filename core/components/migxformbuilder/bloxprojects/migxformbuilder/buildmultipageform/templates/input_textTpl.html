@@ -1,6 +1,7 @@
-<label for="[[+name]]">[[+label]]</label>
-<input id="[[+name]]" type="text" name="[[+name]]" value="[[!+fi.[[+name]]]]" />
+<div class="formfield formfield_[[+class]]">
+<label for="[[+name]]">[[+label]][[+required:is=`1`:then=`<abbr class="req" title="required">*</abbr>`:else=``]]</label>
+<input class="text [[+class]]" id="[[+name]]" type="text" name="[[+name]]" value="[[!+fi.[[+name]]]]" />
 [[!+fi.error.[[+name]]:notempty=`
 <span class="error">[[!+fi.error.[[+name]]]]</span><br />
 `]]
-<br /><br />
+</div>

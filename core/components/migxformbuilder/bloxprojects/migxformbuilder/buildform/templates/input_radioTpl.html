@@ -1,5 +1,9 @@
-<h3>[[+label]]</h3>
+<div class="formfield formfield_[[+class]]">
+<fieldset class="radio_fieldset [[+class]]" >
+<legend>[[+label]][[+required:is=`1`:then=`<abbr class="req" title="required">*</abbr>`:else=``]]</legend>
 [[!+fi.error.[[+name]]:notempty=`
 <span class="error">[[!+fi.error.[[+name]]]]</span><br />
 `]]
 [[+innerrows.input_radio_option]]
+</fieldset>
+</div>

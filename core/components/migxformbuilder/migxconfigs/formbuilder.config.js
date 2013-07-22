@@ -1,5 +1,5 @@
 {
-  "id":77,
+  "id":25,
   "name":"formbuilder",
   "formtabs":[
     {
@@ -47,6 +47,20 @@
           "sourceFrom":"config",
           "sources":"[]",
           "inputOptionValues":"@CHUNK migxFormThankyouselector",
+          "default":""
+        },
+        {
+          "MIGX_id":7,
+          "field":"extended.hide_from_previews",
+          "caption":"Hide from previews",
+          "description":"on multipage previews\/printings hide this formpage",
+          "description_is_code":"0",
+          "inputTV":"",
+          "inputTVtype":"checkbox",
+          "configs":"",
+          "sourceFrom":"config",
+          "sources":"[]",
+          "inputOptionValues":"yes==1",
           "default":""
         }
       ]
@@ -237,12 +251,16 @@
     "check_resid":1,
     "check_resid_TV":"",
     "join_alias":"",
+    "has_jointable":"yes",
     "getlistwhere":"",
     "joins":"",
     "cmpmaincaption":"Formbuilder",
     "cmptabcaption":"Formbuilder",
     "cmptabdescription":"Manage all Forms here.",
-    "cmptabcontroller":""
+    "cmptabcontroller":"",
+    "winbuttons":"",
+    "onsubmitsuccess":"",
+    "submitparams":""
   },
   "columns":[
     {
@@ -269,8 +287,8 @@
   ],
   "createdby":2,
   "createdon":"2012-09-16 22:15:26",
-  "editedby":1,
-  "editedon":"2013-05-15 06:37:34",
+  "editedby":2,
+  "editedon":"2013-07-22 09:50:01",
   "deleted":0,
   "deletedon":"-1-11-30 00:00:00",
   "deletedby":0,

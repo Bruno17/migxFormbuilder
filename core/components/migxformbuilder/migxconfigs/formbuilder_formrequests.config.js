@@ -1,5 +1,5 @@
 {
-  "id":82,
+  "id":24,
   "name":"formbuilder_formrequests",
   "formtabs":[
     {
@@ -25,8 +25,8 @@
     }
   ],
   "contextmenus":"",
-  "actionbuttons":"",
-  "columnbuttons":"viewdetails",
+  "actionbuttons":"toggletrash||exportview",
+  "columnbuttons":"recall_remove_delete||viewdetails||printdetails",
   "filters":[
     {
       "MIGX_id":1,
@@ -49,6 +49,7 @@
     "formcaption":"",
     "update_win_title":"",
     "win_id":"formbuilder_formrequests",
+    "maxRecords":"",
     "multiple_formtabs":"",
     "extrahandlers":"",
     "packageName":"migxformbuilder",
@@ -63,6 +64,7 @@
     "check_resid":1,
     "check_resid_TV":"",
     "join_alias":"",
+    "has_jointable":"yes",
     "getlistwhere":"",
     "joins":[
       {
@@ -72,7 +74,10 @@
     "cmpmaincaption":"",
     "cmptabcaption":"Form Requests",
     "cmptabdescription":"",
-    "cmptabcontroller":""
+    "cmptabcontroller":"",
+    "winbuttons":"",
+    "onsubmitsuccess":"",
+    "submitparams":""
   },
   "columns":[
     {
@@ -146,12 +151,24 @@
       "clickaction":"",
       "selectorconfig":"",
       "renderoptions":"[]"
+    },
+    {
+      "MIGX_id":7,
+      "header":"",
+      "dataIndex":"deleted",
+      "width":"",
+      "sortable":"false",
+      "show_in_grid":"0",
+      "renderer":"",
+      "clickaction":"",
+      "selectorconfig":"",
+      "renderoptions":"[]"
     }
   ],
   "createdby":1,
   "createdon":"2013-05-03 05:26:46",
-  "editedby":1,
-  "editedon":"2013-05-07 12:39:13",
+  "editedby":2,
+  "editedon":"2013-07-22 06:52:48",
   "deleted":0,
   "deletedon":"-1-11-30 00:00:00",
   "deletedby":0,

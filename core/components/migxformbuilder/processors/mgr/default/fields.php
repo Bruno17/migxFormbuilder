@@ -56,6 +56,9 @@ foreach ($record as $field => $fieldvalue) {
     }
 
 }
+
+//print_r($record);
+
 //special handling for museumchecklist
 $submitfields = $modx->fromJson($record['content']);
 foreach ($submitfields as $field=>$value) {

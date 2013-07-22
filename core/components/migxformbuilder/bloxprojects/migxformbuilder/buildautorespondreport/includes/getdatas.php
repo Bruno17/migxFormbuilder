@@ -16,14 +16,18 @@ if (!empty($formids)) {
     $formids = array();
     $formids[] = $formid;
 }
-$this->tpls['bloxouter'] = '@INLINE ' . nl2br($object->get('fiarText'));
+
 $bloxdatas = $_REQUEST;
 
-foreach ($formids as $formid) {
+foreach ($formids as $key => $formid) {
 
     if ($object = $modx->getObject('mfbForm', $formid)) {
         $fieldsets = $modx->fromJson($object->get('json'));
-
+        
+        if ($key == 0){
+            // get the fiarText of the first form
+            $this->tpls['bloxouter'] = '@INLINE ' . nl2br($object->get('fiarText'));            
+        }
 
         foreach ($fieldsets as $fieldset) {
             $fields = $modx->fromJson($fieldset['fields']);

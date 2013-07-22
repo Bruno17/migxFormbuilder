@@ -39,7 +39,7 @@ if ($sender == 'default/fields') {
       ]
     }';
     $tabs = array();
-    
+
     if ($object = $this->modx->getObject($classname, $object_id)) {
         $form_ids = $object->get('form_ids');
         if (!empty($form_ids)) {
@@ -49,7 +49,7 @@ if ($sender == 'default/fields') {
             $form_ids[] = $object->get('form_id');
         }
 
-        
+
         foreach ($form_ids as $form_id) {
 
             $params['packagename'] = 'migxformbuilder';
@@ -58,10 +58,16 @@ if ($sender == 'default/fields') {
             $params['task'] = 'viewformrequest';
             $params['form_id'] = $form_id;
             $params['object_id'] = $object_id;
-            $tab = $this->modx->fromJson($formtab);
-            $tab['caption'] = $form_id; 
-            $tab['fields'][0]['description'] = $this->modx->runSnippet('bloX', $params);
-            $tabs[] = $tab;
+            $description = $this->modx->runSnippet('bloX', $params);
+            $description =  str_replace('[[+innerrows.fieldset]]','',trim($description) );
+
+            if (!empty($description)) {
+                $tab = $this->modx->fromJson($formtab);
+                $tab['caption'] = $form_id;
+                $tab['fields'][0]['description'] = $description;
+                $tabs[] = $tab;
+            }
+
 
         }
     }
@@ -70,3 +76,6 @@ if ($sender == 'default/fields') {
 
 
 }
+
+
+$this->customconfigs['excludeFields'] = 'Form_json,Form_extended,Form_fiarText,Form_sendautoresponse,Form_todb,Form_sendmail,Form_id,form_id,form_ids';

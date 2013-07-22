@@ -2,7 +2,7 @@
 
 $formid = $modx->getOption('form_id', $this->bloxconfig, '');
 $task = $modx->getOption('task', $this->bloxconfig, '');
-$debug_formit = $modx->getOption('debug_formit', $this->bloxconfig, '');
+$debug_formit = $modx->getOption('debug_formit', $this->bloxconfig, 0);
 
 $modx->addPackage($this->bloxconfig['packagename'], $modx->getOption('core_path') . 'components/' . $this->bloxconfig['packagename'] . '/model/');
 
